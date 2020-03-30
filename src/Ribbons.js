@@ -17,6 +17,7 @@ const Ribbons = ({
     onClick,
     strokeWidth,
     blurOnHover,
+    ribbonColor,
     ribbonOpacity,
     ribbonBlurOpacity,
 }) => (
@@ -37,7 +38,7 @@ const Ribbons = ({
             <path
                 key={chordIndex}
                 style={style}
-                fill={color(chord.target.index)}
+                fill={ribbonColor ? ribbonColor(chord.source.index, chord.target.index) : color(chord.target.index)}
                 stroke={`${rgb(color(chord.target.index)).darker()}`}
                 strokeWidth={strokeWidth}
                 d={`${ribbon({source: chord.source, target: chord.target})}`}
@@ -61,6 +62,7 @@ Ribbons.propTypes = {
     strokeWidth: PropTypes.number,
     disableHover: PropTypes.bool,
     blurOnHover: PropTypes.bool,
+    ribbonColor: PropTypes.func
 };
 
 export default Ribbons;

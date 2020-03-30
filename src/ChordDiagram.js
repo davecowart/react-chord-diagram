@@ -23,6 +23,7 @@ export default class ChordDiagram extends Component {
         innerRadius: PropTypes.number,
         groupLabels: PropTypes.array,
         groupColors: PropTypes.array,
+        ribbonColors: PropTypes.array,
         padAngle: PropTypes.number,
         sortGroups: PropTypes.func,
         sortSubgroups: PropTypes.func,
@@ -53,6 +54,7 @@ export default class ChordDiagram extends Component {
         innerRadius: null,
         groupLabels: [],
         groupColors: [],
+        ribbonColors: [],
         groupOnClick: null,
         padAngle: 0.05,
         sortGroups: null,
@@ -115,6 +117,7 @@ export default class ChordDiagram extends Component {
             className,
             groupLabels,
             groupColors,
+            ribbonColors,
             groupOnClick,
             padAngle,
             sortGroups,
@@ -156,6 +159,10 @@ export default class ChordDiagram extends Component {
             .domain(range(groupColors.length))
             .range(groupColors);
 
+        const ribbonColor = ribbonColors.length > 0 ? (sourceIndex, targetIndex) => {
+          return ribbonColors[sourceIndex][targetIndex];
+        } : null;
+
         return (
             <Svg
                 width={width}
@@ -194,6 +201,7 @@ export default class ChordDiagram extends Component {
                     setHoverPersist={this.setHoverPersist}
                     onClick={ribbonOnClick}
                     blurOnHover={blurOnHover}
+                    ribbonColor={ribbonColor}
                     ribbonOpacity={ribbonOpacity}
                     ribbonBlurOpacity={ribbonBlurOpacity}
                 />
