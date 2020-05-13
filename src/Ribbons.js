@@ -39,7 +39,7 @@ const Ribbons = ({
                 key={chordIndex}
                 style={style}
                 fill={ribbonColor ? ribbonColor(chord.source.index, chord.target.index) : color(chord.target.index)}
-                stroke={`${rgb(color(chord.target.index)).darker()}`}
+                stroke={`${rgb(ribbonColor ? ribbonColor(chord.source.index, chord.target.index) : color(chord.target.index)).darker()}`}
                 strokeWidth={strokeWidth}
                 d={`${ribbon({source: chord.source, target: chord.target})}`}
                 onClick={() => { setHoverPersist(!hoverPersist); onClick(chordIndex) } }
