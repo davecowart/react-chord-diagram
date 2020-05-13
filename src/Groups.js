@@ -33,10 +33,9 @@ const Groups = ({
                 />
 
                 <text
-                    dy=".35em"
-                    transform={`rotate(${getAngle(group) * 180 / Math.PI - 90 }) translate(${outerRadius + 10}) ${getAngle(group) > Math.PI ? "rotate(180)" : ""}`}
+                    transform={`rotate(${getAngle(group) * 180 / Math.PI - 90 }) translate(${outerRadius + ((getAngle(group) < Math.PI / 2 || getAngle(group) > Math.PI * 1.5) ? 10 : 20)}) ${(getAngle(group) < Math.PI / 2 || getAngle(group) > Math.PI * 1.5) ? "rotate(90)" : "rotate(270)"}`}
                     fill={labelColors.length === 1 ? labelColors[0] : labelColors[groupIndex]}
-                    style={{textAnchor: (group.startAngle + group.endAngle) / 2 > Math.PI ? "end" : null}}
+                    style={{textAnchor: "middle"}}
                 >
                     {groupLabels[groupIndex]}
                 </text>
